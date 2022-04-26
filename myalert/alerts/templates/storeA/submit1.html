@@ -1,0 +1,39 @@
+<html>
+    {% csrf_token %}
+    {% load static %}
+    <head>
+     {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %}
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+	{% endif %}
+
+	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+
+</head>
+<body>
+<center><form method="POST" action = "" style="background-color:white;">
+
+
+  <img src='{% static "aavso_logo.png" %}' alt="My image"/>
+	<p></p>
+	<p></p>
+    <H1>submitter</H1>
+    {{ form1.as_table }}
+    <H1>information</H1>
+    {{ form2.as_table }}
+
+    <input type="submit" name = "post1" value="Submit">
+
+</form></center></body></html>

@@ -1,0 +1,36 @@
+<html>
+<head>
+<style>
+
+.button {
+  background-color:White
+  border: none;
+  color: black;
+  padding: 5px 14px;
+  text-align: center;
+  font-weight:bold;
+  border-radius: 12px;
+  font-size:15px;
+  text-decoration: none;
+  display: inline-block;
+  margin: 2px 2px;
+  cursor: pointer;
+  height: 30px;
+  }
+</style>
+</head>
+
+   <body>
+    	{% load static %}
+   <img src='{% static "aavso_logo.png" %}' alt="My image"/>
+	<h1>Alert messages graphic upload</h1>
+    <form method="POST" class="post-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <b>
+            {{ form.as_table }}
+            </b>
+            <input class = "button" type="submit"; action= "views.menu" name="new"; value="Save">
+            <input class = "button" type="submit"; name="home"; value="Home">
+
+    </form>
+    </body>

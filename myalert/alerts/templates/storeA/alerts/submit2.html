@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load aavso_forms %}
+{% load common_tags %}
+{% load common_forms %}
+{% load staticfiles %}
+
+{% block title %}Alerts{% endblock %}
+{% block header %}Alert submission form {% endblock %}
+
+{% block breadcrumbs %}
+{{block.super}}
+{% endblock %}
+
+pi<!-- This controls the tabs; include in all of the temptlates pointed to here -->
+{% block menu %}
+<ul class="nav nav-tabs">
+  <li role="navigation">
+    <a href='{% url "alerts:list" %}'>List</a>
+  </li>
+  <li role="navigation" class='active'>
+    <a href='{% url "alerts:submit" %}'>Submit</a>
+  </li>
+  <li role="navigation">
+    <a href='{% url "alerts:doc" %}'>Documentation</a>
+  </li>
+</ul>
+{% endblock %}
+
+
+{% block head %}
+     <script>var django = {jQuery: $};</script> 
+     {{ alert_form.media }}
+{% endblock %}
+
+{% block content %}
+  <form action="" method="post">
+    
+    {{ alert_form.as_p }}
+    
+<script type='text/javascript'>
+  {% dynamic_formset_js target_forms.prefix "#target_forms tr" %}
+</script>
+                         
+
+  <table class='table table-form' id='target_forms'>
+    {% formset_as_table target_forms exclude %}
+  </table>
+    
+    
+      {% csrf_token %}
+    <input type="submit" value="Submit Alert">
+  </form>
+
+  
+{# Comments #}
+{% if alert.comment_set.all %}
+<h3>Comments</h3>
+<dl>
+  {% for comment in alert.comment_set.all %}
+  <dt>{{comment.postedby}} &mdash; {{comment.date_submitted}}</dt>
+  <dd>{{comment.body|linebreaks}}</dd>
+  {% endfor %}
+</dl>
+{% endif %}
+
+{# Comment Entry Form #}
+{% if comment_form %}
+<form method='POST' class='form-horizontal' novalidate>
+  {% form_errors comment_form %}
+  {% form_field comment_form.body %}
+  {% csrf_token %}
+  <input type='hidden' name='form' value='comment' />
+  {% form_submit comment_form.op_text 0 %}
+</form>
+{% else %}
+<p>Comments on this proposal are closed.</p>
+{% endif %}
+ 
+
+
+{% endblock %}

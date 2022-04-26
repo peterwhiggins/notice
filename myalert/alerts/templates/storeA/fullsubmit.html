@@ -1,0 +1,13 @@
+<center><form method="POST" action = "" style="background-color:white;>
+    {% csrf_token %}
+
+{% load static %}
+
+  <img src='{% static "aavso_logo.png" %}' alt="My image"/>
+	<p></p>
+
+    {{ form.as_p }}
+
+    <input type="submit" name = "ready" value="Submit">
+
+</form></center>

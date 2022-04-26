@@ -1,0 +1,38 @@
+
+</head>
+<body>
+
+<center>
+
+<form method="POST": action="": enctype:"multipart/form-data;>
+    	{% load static %}
+	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+  <img src='{% static "aavso_logo.png" %}' alt="My image"/>
+	<h1>Alert notices</h1>
+	<p><h2>Welcome {{ user.username }}  <a href="https://www.aavso.org/user/register">Get account at AAVSO</a></H2></h2></p>
+    <input type="submit" name="ucreate" value="submit new alert">
+    <input class = "button" type="submit" name="uview" value="edit/view my alert">
+    <!--<input class = "button" type="submit"; action="" name="udelete"; value="delete my alert">-->
+    <input class = "button" type="submit"; name="lout"; value="logout">
+    <p></p>
+    {% load render_table from django_tables2 %}
+    {% render_table table %}
+
+
+</form>
+</center>
+
+</body>
+</html>
+
+</center>
+
+</body>
+</html>

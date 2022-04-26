@@ -1,0 +1,5 @@
+<form method="POST" action = "" style="background-color:lightgray;>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" name = "list" value="Submit">
+</form>

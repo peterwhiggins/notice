@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load aavso_forms %}
+{% load common_tags %}
+{% load staticfiles %}
+
+<!-- the static images are coming always from the global static, not the app static, when in debug...
+     So you need to collectstatic if replacing these images  -->
+
+
+{% block title %}Alert Documenation{% endblock %}
+{% block header %}
+<p align=center style='text-align:center'>
+    <span style='font-size:18.0pt;line-height:107%"'>
+     Users Guide for creating an AAVSO Alert
+     <br> Revision 0.1
+    </span>
+</p>
+{% endblock %}
+
+<!-- This controls the tabs; include in all of the temptlates pointed to here -->
+{% block menu %}
+<ul class="nav nav-tabs">
+  <li role="navigation">
+    <a href='{% url "alerts:list" %}'>List</a>
+  </li>
+  <li role="navigation">
+    <a href='{% url "alerts:submit" %}'>Submit</a>
+  </li>
+  <li role="navigation" class='active'>
+    <a href='{% url "alerts:doc" %}'>Documentation</a>
+  </li>
+</ul>
+{% endblock %}
+
+
+{% block content %}
+    <div class="row" style="margin: 30px;">
+        <div class="row">
+            <div class="col-xs-12">
+                <p>
+                <b>I. Introduction</b>
+                <br>The following are instructions on how to upload an exoplanet observation to the AAVSO Exoplanet Database using the Exoplanet Database WebObs page.
+                <br> The following related documents are available at <a href="http://astrodennis.com">http://astrodennis.com</a>.
+                <br> 1.	"A Practical Guide to Exoplanet Observing"
+                <br> 2.	"User Guide: AstroImageJ Macro for Creating an AAVSO Exoplanet Report"
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

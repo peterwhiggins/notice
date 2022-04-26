@@ -1,0 +1,152 @@
+<html>
+
+<head>
+<style>
+	.submit input[type=text]{width:200px;background-color:White;border-radius: 12px;color:black;font-weight:bold;}
+ 	.submit2 input[type=text]{font-size:10px;width:400px;background-color:White;border-radius: 12px;color:black;font-weight:bold;}
+
+	.button {
+	  background-color:White
+	  border: none;
+	  color: black;
+	  padding: 5px 14px;
+	  text-align: center;
+	  font-weight:bold;
+	  border-radius: 12px;
+	  font-size:15px;
+	  text-decoration: none;
+	  display: inline-block;
+	  margin: 2px 2px;
+	  cursor: pointer;
+	  height: 30px;
+  }
+</style>
+
+</head>
+<body>
+{% block content %}
+<center><form style = "width: 75%; font-size: large;" margin: 0  text-align: center; method='POST' enctype="multipart/form-data" >
+	    {% csrf_token %}
+	<!--{% load static %}-->
+    {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %}
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+	{% endif %}
+	
+	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+	{% load static %}
+
+
+
+<div class="button">
+
+  <img src='{% static "aavso_logo.png" %}' alt="My image"/>
+	<p></p>
+	<div class = "button">
+
+	<input class = "button" type="submit" action="views.menu" name="home" value="home">
+	<input class = "button" type="submit" action="" name="new" value="save new">
+	<input class = "button" type="submit" action="" name="edit"; value="save edit">
+	<input class = "button" type="submit" action="" name="email"; value="email feedback">
+	<input class = "button" type="submit" action="" name="lout"; value="logout">
+ 	<p></p>
+</div>
+	<p style="color:darkred"><b>NEW ALERT NOTICE</b></p>
+   	<legend style="font-size: 20px; color: darkblue";>Submitter and dates</legend>
+	<table>
+		<tr>
+			<td>Submitted <br>{{ form.submitted }}</td>
+			<td>Start date <br>{{ form.startdate }}</td>
+			<td>End date <br>{{ form.enddate}}</td>
+		</tr>
+		<tr>
+			<td>Urgency <br>{{ form.urgency }} </td>
+			<td>Title <br> {{ form.title}} </td>
+ 		</tr>
+		<tr>
+			<td>Last name  <br>{{ form.lname }} </td>
+			<td>First name  <br>{{ form.fname }} </td>
+			<td>Affiliation <br>{{ form.affiliation }}</td>
+		</tr>
+		<tr>
+			<td>Contact <br> {{ form.contact }} </td>
+			<td>Notice number <br> {{ form.annum }} </td>
+
+		</tr>
+	</table>
+
+	<legend style ="font-size: 20px; color: darkblue";>Optional: Please enter the file name of a graphic to include, limit 1 MByte</legend>
+    {{ form.table }} <br><br>
+
+  	<legend style ="font-size: 20px; color: darkblue";>Please justify this request by entering reasons</legend>
+    {{ form.justification }} <br><br>
+
+  	<legend style ="font-size: 20px; color: darkblue";>Please enter instructions on methods and time series for observers</legend>
+	{{ form.instructions }} <br><br>
+
+  	<legend style ="font-size: 20px; color: darkblue";>Please enter useful websites or star charts</legend>
+    {{ form.notes }} <br><br>
+
+
+    <table style="width:80%">
+		<tr style ="font-size: 20px;color:darkblue;"><td>Cadence</td><td>Variability</td><td>Spectroscopy</td></tr>
+		<tr><td>Hourly {{ form.HR}}</td><td>Cataclymic Variables{{ form.CT }}</td><td>{{ form.spectroscopy }} wavelengths{{ form.wavelengths }}</td></tr>
+		<tr><td>Nightly {{ form.NI}}</td><td>Eclipsing Binary{{ form.EB }} </td></tr>
+		<tr><td>Weekly {{ form.WK}}</td><td>Exoplanet{{ form.XP }} </td></tr>
+		<tr><td>Monthly {{ form.MO}}</td><td>High Energy{{ form.HE }}</td></tr>
+		<tr><td>Time Series {{ form.TS}}</td><td>Long Period Variables{{ form.LV }}</td></tr>
+		<tr><td></td><td>Short Period Pulsators{{ form.SP }}</td></tr>
+		<tr><td></td><td>Young Steller Objects{{ form.SO }}</td></tr>
+
+	</table>
+	<p></p>
+   	<legend style="font-size: 20px;border-color: #003366;color: darkblue";>Modes of Observing</legend>
+	<table style="width:90%">
+
+	 <td align=top; style="width:500px">photometers VISUAL{{ form.Vp }} CCD-CMOS{{ form.Cp }} DSLR{{ form.Dp }} PEP{{form.Pp }}</b></td>
+	 <td align=top; style="width:500px">filters U{{ form.U }} B{{ form.B }} V{{ form.V }} R{{ form.R }} I{{ form.I }}
+    		u{{ form.uu }} g{{ form.g }} r{{ form.rr }} l{{ form.l }} z{{ form.z }} CV{{ form.cv }} CR{{ form.cr }}</b></td>
+	</table>
+	<p></p>
+  	<legend style="font-size: 20px;color: darkblue";>Add target VSX star names only, program will look them up in VSX, name* not found</legend>
+<div class="submit2">
+<table style="width:90%">
+	<tr> <td> s1 {{ form.s1 }} </td><td>s2 {{ form.s2 }} </td></tr>
+	<tr> <td> s3 {{ form.s3 }} </td><td>s4 {{ form.s4 }} </td></tr>
+	<tr> <td> s5 {{ form.s5 }} </td><td>s6 {{ form.s6 }} </td></tr>
+	<tr> <td> s7 {{ form.s7 }} </td><td>s8 {{ form.s8 }} </td></tr>
+	<tr> <td> s9 {{ form.s9 }} </td><td>s10{{ form.s10 }} </td></tr>
+	<tr> <td> s11{{ form.s11 }} </td><td>s12{{ form.s12 }} </td></tr>
+	<tr> <td> s13{{ form.s13 }} </td><td>s14{{ form.s14 }} </td></tr>
+	<tr> <td> s15{{ form.s15 }} </td><td>s16{{ form.s16 }} </td></tr>
+	<tr> <td> s17{{ form.s17 }} </td><td>s18{{ form.s18 }} </td></tr>
+	<tr> <td> s19{{ form.s19 }} </td><td>s20{{ form.s20 }} </td></tr>
+	<tr> <td> s21{{ form.s21 }} </td><td>s22{{ form.s22 }} </td></tr>
+	<tr> <td> s23{{ form.s23 }} </td><td>s24{{ form.s24 }} </td></tr>
+
+</table>
+</div>
+<!--
+
+		<input type="submit" style = "background-color: red"; name ="edit" action="views.menu.sview" value ="save">
+		<input type="submit" style = "background-color: red"; name ="new" action="views.menu.sview" value ="save new">
+		<input type="submit" style = "background-color: lightblue"; name ="feedbk" action="views.menu.feedbk" value ="email">
+		<input type="submit" name ="home" action="" value ="home">
+-->
+
+</form></center>
+{% endblock %}
+</body>
+</html>

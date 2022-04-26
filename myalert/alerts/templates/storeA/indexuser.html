@@ -1,0 +1,69 @@
+<html>
+
+   {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %}
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+	{% endif %}
+
+
+
+{% load static %} 
+<head>
+	{% load static %}
+</head>
+
+
+<body id="body">
+<center>
+	<table bordercolor="blue" border=2>
+		<tr>
+		<td rowspan = 4 bgcolor="darkblue">>
+
+					<img src='{% static "stars.jpg" %}' alt="My image" width: 100% height: 100%>
+
+		</td>
+		</tr>
+
+		<tr>
+		<td bgcolor="beige">
+		<img src='{% static "aavso_logo.png" %}' alt="My image"/>
+				<h1>Alert Messages</h1>
+				<h2>Welcome {{ user.username }} <H2>
+				<p ><H2>Observer view and hardcopy alert messages</p></H2>
+		</td>
+		</tr>
+
+		<tr>
+		<td bgcolor="lightcyan">
+			<h2>
+					
+					<a href="amessages">list of approved</a><br>
+					<a href="lout">Logout</a><br>
+
+			</H2>
+		</td>
+		</tr>
+
+		<tr>
+		<td bgcolor="cyan">
+			<h2><i>Select message from the list of approved</i></h2>
+			<ul>
+			<li>Choose from list</li>
+			<li>select letter then print it for hardcopy</li>
+			<li>Logout leaves the app </li>
+			</ul>
+		</td>
+		</tr>
+
+
+	</table>
+</center>
+</body>
+
+
+</html>

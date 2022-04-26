@@ -1,0 +1,40 @@
+
+<html>
+<table border="1">
+    <tr height=30px>
+        <td width="60" bgcolor="#fbeee6">id</td>
+  	    <td width="60" bgcolor="#fbeee6">submitter_name</td>
+        <td width="60" bgcolor="#fbeee6">submitter_email</td>
+        <td width="60" bgcolor="#fbeee6">submitter_affiliation</td>
+        <td width="60" bgcolor="#fbeee6">alert_title</td>
+        <td width="600" bgcolor=" #fbeee6">alert_body</td>
+        <td width="60" bgcolor=" #fbeee6">date_start</td>
+        <td width="60" bgcolor=" #fbeee6">date_end</td>
+        <td width="60" bgcolor="#fbeee6">forum_url</td>
+        <td width="60" bgcolor=" #fbeee6">detail_url</td>        
+        <td width="60" bgcolor=" #fbeee6">status</td>        
+    </tr>
+    {% for q in dt %}
+    <tr height=30px>
+        <td width="60" bgcolor="#fbeee6">{{q.id}}</td>
+        <td width="60" bgcolor="#fbeee6">{{q.submitter_name}}</td>
+        <td width="60" bgcolor="#fbeee6">{{q.submitter_email}}</td>
+        <td width="60" bgcolor="#fbeee6">{{q.submitter_affiliation}}</td>
+        <td width="60" bgcolor="#fbeee6">{{q.alert_title}}</td>
+        <td width="600" bgcolor="#fbeee6">{{q.alert_body}}</td>
+        <td width="60" bgcolor="#fbeee6">{{q.date_start }}</td>               
+        <td width="60" bgcolor="#fbeee6">{{q.date_end }}</td>     
+        <td width="60" bgcolor="#fbeee6">{{q.forum_url}}</td>                     
+        <td width="60" bgcolor="#fbeee6">{{q.detail_url}}</td> 
+        <td width="60" bgcolor="#fbeee6">{{q.status}}</td> 
+    </tr>
+    {% endfor %}
+</table>
+<form method="POST" action="" style="background-color:#fbeee6;">
+    {% csrf_token %}
+    <input type="integer" id="redit" name='redit'>
+    <input type="submit" style="font-size:14pt;color:white;background-color:green;border:2px solid #336600;padding:3px" name="list" value="Submit id to edit">
+</form>
+
+</html>
+

@@ -1,0 +1,138 @@
+<html>
+
+<head>
+<style>
+    .target input{width:450px;background-color:White;color:black;font-weight:bold;}
+ 	.submit2 input[type=text]{font-size:10px;width:400px;background-color:White;border-radius: 12px;color:black;font-weight:bold;}
+	.button {
+	  background-color:White
+	  border: none;
+	  color: black;
+	  #padding: 5px 14px;
+	  text-align: center;
+	  font-weight:bold;
+	  border-radius: 12px;
+	  font-size:15px;
+	  text-decoration: none;
+	  display: inline-block;
+	  margin: 2px 2px;
+	  cursor: pointer;
+	  height: 30px;
+  }
+   .button2 {background-color: Red;  color: white; font-size:20px; height: 40px;}
+	form {
+	  margin-left: 30px;
+	}
+	.buttons input[type=submit]{width:100px;height:50px;background-color: DodgerBlue;color:white;font-weight:bold;border-radius: 12px;font-size:25px;}
+
+ </style>
+
+
+</head>
+<body>
+<form action="" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	<!--{% load static %}-->
+    {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %}
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+	{% endif %}
+	
+	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+	{% load static %}
+
+
+
+<div class="submit">
+
+  <img src='{% static "aavso_logo.png" %}' alt="My image"/>
+	<p></p>
+	<div class = "button">
+	<input class = "button" type="submit" action="views.menu" name="home" value="menu">
+	<input class = "button button2" background-color="red"  type="submit" action="" name="new" value="save">
+	</div>
+	<p></p>
+<p style="color:darkred"><b>NEW ALERT NOTICE</b></p>
+   	<legend style="font-size: 20px; color: darkblue";>Submitter and dates</legend>
+	<table>
+		<tr>
+			<td>Submitted <br>{{ form.submitted }}</td>
+			<td>Start date <br>{{ form.startdate }}</td>
+			<td>End date <br>{{ form.enddate}}</td>
+			<td>Urgency <br>{{ form.urgency }} </td>
+			<td>Title <br> {{ form.title}} </td>
+ 		</tr>
+		<tr>
+			<td>Last name  <br>{{ form.lname }} </td>
+			<td>First name  <br>{{ form.fname }} </td>
+			<td>Affiliation <br>{{ form.affiliation }}</td>
+			<td>Contact <br> {{ form.contact }} </td>
+
+
+		</tr>
+	</table>
+
+
+	<legend style ="font-size: 20px; color: darkblue";>Optional: Please enter the file name of a graphic to include, limit 1 MByte</legend>
+	{{ form.table }}<br><br>
+
+  	<legend style ="font-size: 20px; color: darkblue";>Please justify this request by entering reasons</legend>
+    {{ form.justification }} <br><br>
+
+  	<legend style ="font-size: 20px; color: darkblue";>Please enter instructions on methods and time series for observers</legend>
+	{{ form.instructions }} <br><br>
+
+  	<legend style ="font-size: 20px; color: darkblue";>Please enter useful websites or star charts</legend>
+    {{ form.notes }} <br><br>
+
+
+    <table>
+		<tr><td>CADENCE Hourly {{ form.HR}} Nightly {{ form.NI}} Weekly {{ form.WK}} Monthly {{ form.MO}} Time Series {{ form.TS}} </td></tr>
+		<tr><td>VARIABIITY Cataclymic Variables{{ form.CT }} Eclipsing Binary{{ form.EB }} Exoplanet{{ form.XP }} High Energy{{ form.HE }} \
+			Long Period Variables{{ form.LV }} Short Period Pulsators{{ form.SP }} Young Steller Objects{{ form.SO }} </td></tr>
+		<tr><td>SPECTROSCOPY {{ form.spectroscopy }} wavelengths{{ form.wavelengths }}</td></tr>
+	</table>
+	<p></p>
+   	<legend style="font-size: 20px;border-color: #003366;color: darkblue";>Modes of Observing</legend>
+	<table >
+
+	 <tr><td align=top;>photometers VISUAL{{ form.Vp }} CCD-CMOS{{ form.Cp }} DSLR{{ form.Dp }} PEP{{form.Pp }}</b></td></tr>
+	 <tr><td align=top;>filters U{{ form.U }} B{{ form.B }} V{{ form.V }} R{{ form.R }} I{{ form.I }}
+		 u{{ form.uu }} g{{ form.g }} r{{ form.rr }} i{{ form.l }} z{{ form.z }} CV{{ form.cv }} CR{{ form.cr }}</b></td></tr>
+	</table>
+	<p></p>
+  	<legend style="font-size: 20px;color: darkblue";>Add target VSX star names only, program will look them up in VSX, name* not found</legend>
+
+</div><div class="submit2">
+<table>
+	<tr> <td> s1 {{ form.s1 }} </td><td>s13 {{ form.s13 }} </td></tr>
+	<tr> <td> s2 {{ form.s2 }} </td><td>s14 {{ form.s14 }} </td></tr>
+	<tr> <td> s3 {{ form.s3 }} </td><td>s15 {{ form.s15 }} </td></tr>
+	<tr> <td> s4 {{ form.s4 }} </td><td>s16 {{ form.s16 }} </td></tr>
+	<tr> <td> s5 {{ form.s5 }} </td><td>s17 {{ form.s17 }} </td></tr>
+	<tr> <td> s6 {{ form.s6 }} </td><td>s18 {{ form.s18 }} </td></tr>
+	<tr> <td> s7 {{ form.s7 }} </td><td>s19 {{ form.s19 }} </td></tr>
+	<tr> <td> s8 {{ form.s8 }} </td><td>s20 {{ form.s20 }} </td></tr>
+	<tr> <td> s9 {{ form.s9 }} </td><td>s21 {{ form.s21 }} </td></tr>
+	<tr> <td> s10{{ form.s10 }} </td><td>s22 {{ form.s22 }} </td></tr>
+	<tr> <td> s11{{ form.s11 }} </td><td>s23 {{ form.s23 }} </td></tr>
+	<tr> <td> s12{{ form.s12 }} </td><td>s24 {{ form.s24 }} </td></tr>
+
+</table>
+</div>
+
+</form>
+</body>
+</html>

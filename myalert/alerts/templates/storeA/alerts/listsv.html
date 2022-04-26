@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'alerts/css/base.css' %}">
+{% endblock %}
+
+{% block title %}Alerts List{% endblock %}
+{% block header %}Alerts List{% endblock %}
+
+{% block breadcrumbs %}
+{{block.super}}
+{% endblock %}
+
+<!-- This controls the tabs; include in all of the temptlates pointed to here -->
+{% block menu %}
+<ul class="nav nav-tabs">
+  <li role="navigation" class='active' >
+    <a href='{% url "alerts:list" %}'>List</a>
+  </li>
+  <li role="navigation">
+    <a href='{% url "alerts:submit" %}'>Submit</a>
+  </li>
+  <li role="navigation">
+    <a href='{% url "alerts:doc" %}'>Documentation</a>
+  </li>
+</ul>
+{% endblock %}
+
+
+{% block content %}
+<h3>Filter Alerts</h3>
+<form method='GET' class='form-horizontal'>
+  {% form_errors filter.form %}
+  {% form_field_horiz_double filter.form.date filter.form.date_gt %}
+  {% if admin %} 
+    {% form_select_inline_horiz filter.form.status %}
+  {% endif %}
+  {% form_submit "Filter" %}
+</form>
+
+<h3>Alerts</h3>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Alert #</th>
+      <th>Submitted</th>
+      <th>Status</th>
+      <th>Title</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for alert in filter.qs %}
+    <tr>
+      <td>
+        <a href='{% url 'alerts:review' alert.id %}'>View</a>
+      </td>
+      <td>{{ alert.alert_number }}</td>
+      <td>{{ alert.date_submitted|date:"m/d/Y" }}</td>
+      <td>{{ alert.status }}</td>
+      <td>{{ alert.alert_title|truncatewords:12 }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

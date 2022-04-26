@@ -1,0 +1,119 @@
+<form method="POST" action="">
+    {% csrf_token %}
+ 	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+<head>
+
+<style>
+	input[type=button], input[type=submit], input[type=reset] {
+	background-color: #4CAF50;
+	border: none;
+	color: blue;
+	padding: 6px 16px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 12px;
+	font-size: 40px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	}
+	div b {
+	font-size: large;
+	}
+	div a {
+	font-size: large;
+	font-weight: bold;
+	}
+
+	table{
+    width:75%;
+    border-collapse:collapse;
+    text-align:center;
+    border:1px solid #00F;
+    font-size:12px;
+    }
+</style>
+{% load static %}
+
+
+
+</head>
+
+
+<center>
+  <img src='{% static "aavso_logo.png" %}' alt="My image"/>
+
+
+	<h1>Alert messages</h1>
+
+	<p><h2>Welcome {{ user.username }}, {{ user.id }} </h2></p>
+
+
+<div a>
+<table borders="1px">
+
+
+        <tr height=30px>
+          <th>id</th>
+          <th >title</th>
+          <th >submitted</th>
+          <th >lname</th>
+          <th >contact</th>
+          <th >starts</th>
+          <th >ends</th>
+          <th >status</th>
+          <th >approved</th>
+
+        </tr>
+
+
+     {% for q in dt %}
+
+        <tr height=30px>
+          <td >{{q.id}}</td>
+          <td >{{q.title}}</td>
+          <td >{{q.submitted}}</td>
+          <td >{{q.lname}}</td>
+          <td >{{q.contact}}</td>
+          <td >{{q.startdate}}</td>
+          <td >{{q.enddate}}</td>
+          <td >{{q.status}}</td>
+          <td >{{q.approved}}</td>
+
+       </tr>
+
+    {% endfor %}
+</table>
+
+<p></p> <p></p>
+
+<label for="rec">Enter an <i><b>id</b></i> number:</label>  <input type="integer" id="anum" name='anum'>
+<label for="rec">Enter a</i> date:</label>  <input type="date" id="adate" name='adate' ><br>
+
+    <H2>any AAVSO member<h2>
+
+<button type="submit"; action='create'; name="create"; value="True">submit new alert</button>
+<button type="submit"; action=''; name="view"; value="True">edit/view own alert</button>
+<button type="submit"; action=''; name="pdf"; value="True">pdf alert</button>
+
+    <H2>restricted to staff<h2>
+
+<button type="submit"; action=''; name="view"; value="True">edit/view any alert</button>
+<button type="submit"; action=''; name="approved"; value="True">approve alert</button>
+<button type="submit"; action=''; name="delete"; value="True">delete</button>
+
+   <H2>quit<h2>
+
+<button type="submit"; action=''; name="lout"; value="True">logout</button></td></tr>
+
+
+</form>
+
+</html>
+

@@ -1,0 +1,122 @@
+<html>
+
+<head>
+<style>
+	.submit input[type=text]{width:200px;background-color:White;border-radius: 12px;color:black;font-weight:bold;}
+    .target input{width:600px;background-color:White;border-radius: 12px;color:black;font-weight:bold;}
+    .buttons input[type=submit]{width:100px;height:50px;background-color: White;color:Black;font-weight:bold;border-radius: 12px;font-size:25px;}
+
+</style>
+
+
+</head>
+<body>
+
+<center><form enctype="multipart/form-data" style = "width: 75%; font-size: large;" margin: 0  text-align: center; method='POST'>
+	    {% csrf_token %}
+	<!--{% load static %}-->
+    {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %}
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+	{% endif %}
+	
+	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+	{% load static %}
+
+
+
+<div class="submit">
+
+  <img src='{% static "aavso_logo.png" %}' alt="My image"/>
+	<p></p>
+<p style="color:darkblue"><b>SUBMISSION</b></p>
+   	<legend style="font-size: 20px; color: darkblue";>Submitter and dates</legend>
+	<table>
+		<tr>
+			<td>Submitted <br>{{ form.submitted }} </td>
+			<td>Start date <br>{{ form.startdate }}</td>
+			<td>End date <br>{{ form.enddate}}</td>
+		</tr>
+		<tr>
+			<td>Urgency <br>{{ form.urgency }} </td>
+			<td>status <br> {{ form.status }} </td>
+			<td>Title <br> {{ form.title}} </td>
+ 		</tr>
+		<tr>
+			<td>Last name  <br>{{ form.lname }} </td>
+			<td>First name  <br>{{ form.fname }} </td>
+			<td>Affiliation <br>{{ form.affiliation }}</td>
+		</tr>
+		<tr>
+			<td>Contact <br> {{ form.contact }} </td>
+			<td>Notice number <br> {{ form.annum }}</td>
+
+		</tr>
+	</table>
+
+  	<legend style ="font-size: 20px; color: darkblue";>Please justify this request by entering reasons</legend>
+    {{ form.justification }} <br><br>
+
+  	<legend style ="font-size: 20px; color: darkblue";>Please enter instructions on methods, etc for observers</legend>
+	{{ form.instructions }} <br><br>
+
+  	<legend style ="font-size: 20px; color: darkblue";>Please enter useful websites or star charts</legend>
+    {{ form.notes }} <br><br>
+
+	<legend style ="font-size: 20px; color: darkblue";>Please enter the file name of a graphic to include</legend>
+    {{ form.graphic }} <br><br>
+
+
+  <table>
+	  <td align=top; style="width:500px"><b>Cadence<br> Time Series {{ form.TS}}<br>Hourly {{ form.HR}}<br>Nightly {{ form.NI}}<br>
+  		Weekly {{ form.WK}}<br> Monthly {{ form.MO}} </b></td>
+	  <td align= top; style="width:500px"><b>Variability {{ form.variability}} </b></td></table><br><br>
+	</table>
+
+   	<legend style="font-size: 20px";>Spectroscopy, Complete if applies</legend>
+
+	<table><b>
+		<td align=top; style="width:500px"> <b> Resolution {{ form.spectroscopy }} </b> </td>
+		<td align=top; style="width:500px"> <b> Wavelengths {{ form.wavelengths }} </b> </td>
+	</b></table>
+
+
+   	<legend style="font-size: 20px;border-color: #003366";>Photometry, Complete if applies</legend>
+	<table>
+
+	 <td align=top; style="width:500px"><b>photometers VISUAL{{ form.Vp }} CCD-CMOS{{ form.Cp }} DSLR{{ form.Dp }} PEP{{form.Pp }}</b></td>
+	 <td align=top; style="width:500px"><b>filter U{{ form.U }} B{{ form.B }} V{{ form.V }} R{{ form.R }} I{{ form.I }}
+    		u{{ form.uu }} g{{ form.g }} r{{ form.rr }} l{{ form.l }} z{{ form.z }} cv{{ form.cv }} cr{{ form.cr }}</b></td>
+	</table>
+	<p></p>
+  	<legend style="font-size: 20px;color: darkblue";>Add target VSX star names only, program will look them up in VSX, name* not found</legend>
+
+
+</div>
+<div class = "target">
+
+
+		 {{ form.s1 }}  {{ form.s2 }}  {{ form.s3 }}  {{ form.s4 }}  {{ form.s5 }}
+		 {{ form.s6 }}  {{ form.s7 }}  {{ form.s8 }}  {{ form.s9 }}  {{ form.s10 }}
+		 {{ form.s11 }}  {{ form.s12 }}  {{ form.s13 }}  {{ form.s14 }}  {{ form.s15 }}
+	     {{ form.s16 }}  {{ form.s17 }}  {{ form.s18 }}  {{ form.s19 }}  {{ form.s20 }}
+		 {{ form.s21 }}  {{ form.s22 }}  {{ form.s23 }}  {{ form.s24 }}  {{ form.s25 }}
+
+</div>
+<div class = "buttons">
+		<input type="submit" style = "background-color: red"; name ="new" action="" value ="edit">
+		<input type="submit" name ="home" action="" value ="home">
+</div>
+</form></center>

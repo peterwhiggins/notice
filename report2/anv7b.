@@ -1,0 +1,39 @@
+\documentclass[11pt]{article}    
+    \addtolength{\topmargin}{-3cm}
+    \addtolength{\textheight}{3cm}
+\usepackage{graphicx}
+\usepackage[section]{placeins}
+\usepackage{geometry}
+\usepackage{color,soul}
+\usepackage{pdfpages}
+\usepackage[noae]{Sweave}
+
+
+
+\title{Revised Alert Messages Application}
+\author{Peter Higgins, PhD}
+\date{April 25, 2022}
+
+\begin{document}
+\maketitle
+
+
+
+
+\section{Introduction}
+
+This work is the latest revision of previous versions that implements changes requested by the project specialist, Elizabeth Waagen, AAVSO, including:
+
+\begin{enumerate}
+	\item Add forum links to notice input and html document. 
+    
+    \item Automate handling of include graphic in original and edited submittals.
+    
+    \item Reorder star table columns, vertically.
+    
+    \item Cosmetic changes, fix errors.
+    
+\end{enumerate}   
+
+\section{Log in as staff member}
+\end {document}

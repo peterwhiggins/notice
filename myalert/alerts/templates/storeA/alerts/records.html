@@ -1,0 +1,42 @@
+<form method="POST" action="" style="background-color:#fbeee6;>
+    {% csrf_token %}
+<html>
+<table style=" border: 1px solid black;border-collapse: collapse;">
+
+
+
+        <tr height=30px>
+          <td style=" border: 1px solid black;border-collapse: collapse;bgcolor="#fbeee6">id</td>
+          <td style=" border: 1px solid black;border-collapse: collapse;bgcolor="#fbeee6">title</td>
+          <td style=" border: 1px solid black;border-collapse: collapse;bgcolor="#fbeee6">submitter</td>
+          <td style=" border: 1px solid black;border-collapse: collapse;bgcolor="#fbeee6">submission</td>
+          <td style=" border: 1px solid black;border-collapse: collapse;bgcolor="#fbeee6">approved</td>
+          <td style=" border: 1px solid black;border-collapse: collapse;bgcolor="#fbeee6">status</td>
+
+        </tr>
+
+
+     {% for q in dt %}
+
+        <tr height=30px>
+          <td style=" border: 1px solid black;border-collapse: collapse;bgcolor="#fbeee6">{{q.id}}</td>
+          <td style=" border: 1px solid black;border-collapse: collapse;bgcolor="#fbeee6">{{q.tl}}</td>
+          <td style=" border: 1px solid black;border-collapse: collapse;bgcolor="#fbeee6">{{q.sn}}</td>
+          <td style=" border: 1px solid black;border-collapse: collapse;bgcolor="#fbeee6">{{q.sd}}</td>
+          <td style=" border: 1px solid black;border-collapse: collapse;bgcolor="#fbeee6">{{q.ad}}</td>
+          <td style=" border: 1px solid black;border-collapse: collapse;bgcolor="#fbeee6">{{q.st}}</td>
+       </tr>
+
+    {% endfor %}
+</table>
+
+<p></p> <p></p>
+
+<label for="rec">Choose a <i><b>message</b></i> number to view:</label>  <input type="integer" id="anum" name='anum'>
+<button type="submit"; action=''; name="view";  style="background-color: green; color: white; padding: 16px 32px; font: bold 14px Arial;" value="True">view alert</button>
+<button type="submit"; action=''; name="home";  style="background-color: blue; color: white; padding: 16px 32px; font: bold 14px Arial;" value="True">go to home</button>
+
+</form>
+
+</html>
+

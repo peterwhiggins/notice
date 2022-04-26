@@ -1,0 +1,132 @@
+
+<center><form style = "width: 75%; font-size: large;" margin: 0  text-align: action="" center; method='POST' ;">
+	    {% csrf_token %}
+	<!--{% load static %}-->
+    {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %}
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+	{% endif %}
+	
+	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+	
+
+<head>
+
+<style>
+	input[type=button], input[type=submit], input[type=reset] {
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 6px 16px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 12px;
+	font-size: 20px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	}
+	div b {
+	font-size: large;
+	}	div a {
+	font-size: large;
+	}
+</style>
+{% load static %}
+
+
+
+</head>
+
+  <img src='{% static "aavso_logo.png" %}' alt="My image"/>
+	<p></p>
+<div a>
+<p style="color:darkblue"><b>SUBMISSION</b></p>
+
+<fieldset style="width: 1000px;border-color: #003366">
+   	<legend style="font-size: 20px; color: darkblue";>Submitter and dates</legend>
+	<table>
+		<tr>
+			<td> Submitted {{ form.submitted }} </td>
+			<td>Urgency {{ form.urg }} </td>
+			<td>Status {{ form.status }} </td>
+			<td>Title {{ form.title}} </td>
+		</tr>
+		<tr>
+			<td>Last name  {{ form.lname }} </td>
+			<td>First name  {{ form.fname }} </td>
+			<td>affiliation {{ form.affiliation }}</td>
+			<td>Contact  {{ form.contact }} </td>
+			<td>Start date {{ form.startdate }}</td>
+			<td>End date {{ form.enddate}}</td>
+		</tr>
+	</table>
+</fieldset>
+
+<fieldset style="width: 1000px;border-color: #003366">
+  	<legend style="font-size: 20px; color: darkblue";>Information</legend>
+
+    Justification {{ form.justification}} <br><br>
+	Instructions  {{ form.instructions }} <br><br>
+	Notes         {{ form.notes }} <br><br>
+    Tables  {{ form.tbl }} <br><br>
+
+</fieldset>
+
+<fieldset style="width: 1000px;border-color: #003366">
+  	<legend style="font-size: 20px; color:darkblue;">Details</legend>
+
+
+  <table><td style="width:500px"><b>Time Series {{ form.TS}}   Hourly {{ form.HR}}  Nightly {{ form.NI}}
+  Weekly {{ form.WK}} Monthly {{ form.MO}} </b></td><td style="width:500px">
+  <b>Variability {{ form.variability}} </b></td></table><br><br>
+
+<fieldset style="color:darkblue; width: 700px;">
+   	<legend style="font-size: 20px";>Spectroscopy, Complete if applies</legend>
+
+	<table><b>
+		<td style="width:350px"> <b> Resolution {{ form.spectroscopy }} </b> </td>
+		<td style="width:350px"> <b> Wavelengths {{ form.wavelengths }} </b> </td>
+	</b></table>
+
+</fieldset>
+
+<fieldset style="color:darkblue; width: 700px;">
+
+   	<legend style="font-size: 20px;border-color: #003366";>Photometry, Complete if applies</legend>
+	<table>
+
+	<td style="width:350px"><b>{{ form.photometry }}</b></td>
+	
+	 <td style="width:350px"><b>filter U{{ form.U }} B{{ form.B }} V{{ form.V }} R{{ form.R }} I{{ form.I }}
+    u{{ form.uu }} g{{ form.g }} r{{ form.rr }} l{{ form.l }} z{{ form.z }}</b></td>
+	</table>
+
+</fieldset>
+
+</fieldset>
+
+<fieldset style="width: 1400px;border-color: #003366">
+  	<legend style="font-size: 20px;color: darkblue";>Add target VSX stars</legend>
+{{ form.star1 }}{{ form.star2 }}{{ form.star3 }}{{ form.star4 }}{{ form.star5 }}{{ form.star6 }}
+{{ form.star7 }}{{ form.star8 }}{{ form.star9 }}{{ form.star10 }}{{ form.star11 }}{{ form.star12 }}
+{{ form.star13 }}{{ form.star14 }}{{ form.star15 }}{{ form.star16 }}{{ form.star17 }}{{ form.star18 }}
+{{ form.star19 }}{{ form.star20 }}{{ form.star21 }}{{ form.star22 }}{{ form.star23 }}{{ form.star24 }}
+</fieldset>
+		 <input type="submit" name ="prev" action="" value ="<">
+		 <input type="submit" name ="next" action="" value =">">
+		 <input type="submit" style = "background-color: red"; name ="ready" action="" value ="submit">
+		 <input type="submit" name ="lout" action="" value ="logout">
+		 <input type="submit" name ="home" action="" value ="home">
+
+</form></center>

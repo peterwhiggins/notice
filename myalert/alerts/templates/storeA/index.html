@@ -1,0 +1,68 @@
+﻿<html>
+
+   {% if form.errors %}
+       {% for field in form %}
+           {% for error in field.errors %}
+              <div class="alert alert-danger">
+                   <strong>{{ error|escape }}</strong>
+              </div>
+           {% endfor %}
+       {% endfor %}
+	{% endif %}
+
+
+
+{% load static %} 
+<head>
+	{% load static %}
+</head>
+
+
+<body id="body">
+<center>
+	<table bordercolor="blue" border=2>
+		<tr>
+		<td rowspan = 4 bgcolor="darkblue">
+
+					<img src='{% static "stars.jpg" %}' alt="My image" width: 100% height: 100%>
+
+		</td>
+		</tr>
+
+		<tr>
+		<td bgcolor="beige">
+		<img src='{% static "aavso_logo.png" %}' alt="My image"/>
+				<h1>Alert Messages</h1>
+				<h2>Welcome {{ user.username }} </h2>
+				<p ><H2>Create, edit, process and view alert messages</p></H2>
+		</td>
+		</tr>
+
+		<tr>
+		<td bgcolor="lightcyan">
+			<h2>
+					<a href="create">Create</a><br>
+					<a href="amessages">Manage</a><br>
+					<a href="lout">Logout</a><br>
+			</H2>
+		</td>
+		</tr>
+
+		<tr>
+		<td bgcolor="cyan">
+			<h2><i>Select action desired from above menu bar.</i></h2>
+			<ul>
+			<li>Create supports input of information to generate an alert message. </li>
+			<li>Manage is a staff function for processing alert messages, requires login. </li>
+			<li>Logout leaves the app </li>
+			</ul>
+		</td>
+		</tr>
+
+
+	</table>
+</center>
+</body>
+
+
+</html>

@@ -1,0 +1,100 @@
+<form method="POST" action="">
+    {% csrf_token %}
+ 	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+<head>
+
+<style>
+	input[type=button], input[type=submit], input[type=reset] {
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 6px 16px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 12px;
+	font-size: 20px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	}
+	div b {
+	font-size: large;
+	}
+	div a {
+	font-size: large;
+	font-weight: bold;
+	}
+
+	table{
+    width:80%;
+    border-collapse:collapse;
+    text-align:center;
+    border:1px solid #00F;
+    font-size:12px;
+    }
+</style>
+{% load static %}
+
+
+
+</head>
+
+
+<center>
+  <img src='{% static "aavso_logo.png" %}' alt="My image"/>
+
+
+	<h1>Alert messages listing</h1>
+    <h2>observer, PI view</h2>
+
+<div a>
+<table borders="1px">
+
+
+        <tr height=30px>
+          <th>id</th>
+          <th >title</th>
+          <th >submitted</th>
+          <th >lname</th>
+          <th >contact</th>
+          <th >starts</th>
+          <th >ends</th>
+          <th >approved</th>
+          <th >published</th>
+        </tr>
+
+
+     {% for q in dt %}
+
+        <tr height=30px>
+          <td >{{q.id}}</td>
+          <td >{{q.title}}</td>
+          <td >{{q.submitted}}</td>
+          <td >{{q.lname}}</td>
+          <td >{{q.contact}}</td>
+          <td >{{q.startdate}}</td>
+          <td >{{q.enddate}}</td>
+          <td >{{q.approved}}</td>
+          <td >{{q.published}}</td>
+       </tr>
+
+    {% endfor %}
+</table>
+
+<p></p> <p></p>
+
+<label for="rec">Enter an <i><b>id</b></i> number:</label>  <input type="integer" id="anum" name='anum'><br>
+<button type="submit"; action=''; style ="background-color: lightgreen"; name="view"; value="True">view message</button>
+<button type="submit"; action=''; style ="background-color: lightgreen"; name="publish"; value="True">letter</button>
+<!--<button type="submit"; action=''; style ="background-color: lightgreen"; name="home"; value="True">go to home</button> -->
+</div>
+</form>
+
+</html>
+

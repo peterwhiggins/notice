@@ -1,0 +1,67 @@
+<html>
+
+<head>
+<style>
+
+.success {
+	background-color: White;
+	color: red;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;}
+
+.button {
+  background-color:White
+  border: none;
+  color: black;
+  padding: 5px 14px;
+  text-align: center;
+  font-weight:bold;
+  border-radius: 12px;
+  font-size:15px;
+  text-decoration: none;
+  display: inline-block;
+  margin: 2px 2px;
+  cursor: pointer;
+  height: 30px;
+  }
+</style>
+
+
+</head>
+<body>
+
+<center>
+
+<form method="POST": action="": enctype:"multipart/form-data;>
+    	{% load static %}
+	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+  <img src='{% static "aavso_logo.png" %}' alt="My image"/>
+	<h1>Alert notices</h1>
+	<p><h2>Welcome {{ user.username }} </h2></p>
+
+	<input class = "button" type="submit" action="" name="screate" value="submit new alert">
+	<input class = "button" type="submit" action="" name="sview" value="edit/view any alert">
+	<input class = "button" type="submit"; action="" name="sdelete"; value="delete">
+	<input class = "button" type="submit"; action="" name="pdf"; value="alert html">
+	<input class = "button" type="submit"; action="" name="lout"; value="logout">
+
+    <p></p>
+    {% load render_table from django_tables2 %}
+    {% render_table table %}
+
+
+  
+
+</form>
+</center>
+
+</body>
+</html>

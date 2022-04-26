@@ -1,0 +1,6 @@
+<form method="POST" action = "" style="background-color:lightgray;>
+    {% csrf_token %}
+    {{ form1.as_table }}
+    {{ form2.as_table }}
+    <input type="submit" name = "message" value="Submit">
+</form>
